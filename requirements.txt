@@ -8,3 +8,4 @@ psycopg2-binary>=2.9.9
 gunicorn
 pymongo
 Flask-WTF==1.2.1
+email-validator

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>auth</title>
+  <title>Owow | Login</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
 </head>
 <body>
   <h1>Auth Page</h1>
@@ -20,6 +21,11 @@
         {{ form.password.label }}
         <br>
         {{ form.password(size=32) }}
+      </div>
+      <div>
+        {{ form.remember.label }}
+        <br>
+        {{ form.remember() }}
       </div>
       <div>
         {{ form.submit() }}

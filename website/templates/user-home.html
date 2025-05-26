@@ -1,0 +1,11 @@
+{% extends 'user-base1.html' %}
+
+{% block title %}Owow | Home{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user-home.css') }}">
+{% endblock %}
+
+{% block content %}
+  <h3>Welcome {{ username }}</h3>
+{% endblock %}

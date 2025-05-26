@@ -1,0 +1,22 @@
+.one {
+    border: 1px solid green;
+    height: 160px;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+.two {
+    border: 1px solid blue;
+    width: 15px;
+    height: 15px;
+}
+.three {
+    border: 1px solid purple;
+    width: 15px;
+    height: 40px;
+}
+.four {
+    border: 1px solid orange;
+    width: 15px;
+    height: 30px;
+}

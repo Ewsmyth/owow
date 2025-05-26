@@ -8,7 +8,7 @@ import time
 from pymongo import MongoClient
 
 def create_owow():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static')
 
     app.config.from_object(config)
 

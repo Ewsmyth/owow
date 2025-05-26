@@ -2,6 +2,7 @@ from functools import wraps
 from flask import current_app, redirect, url_for, flash
 from flask_login import current_user
 
+# Allows you to set decorators that restrict access to certain URLs based on user's role
 def role_required(*roles):
     """Decorator to restrict access based on user roles."""
     def wrapper(func):

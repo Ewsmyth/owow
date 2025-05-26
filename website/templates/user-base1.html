@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user-base1.css') }}">
+  {% block css %}{% endblock %}
+</head>
+<body {% if current_user and current_user.theme %} class="dark-mode" {% endif %}>
+  <div class="top-navbar"></div>
+  <div class="main-content-wrap">
+    {% block content %}{% endblock %}
+  </div>
+  <div class="bottom-navbar"></div>
+</body>
