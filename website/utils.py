@@ -50,6 +50,7 @@ def create_admin_user():
 
             create_admin = User(
                 username='admin',
+                email='admin@localhost',
                 role_id=admin_role.role_id,  # Assign the fetched admin role ID
                 password=password_hash
             )

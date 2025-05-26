@@ -47,6 +47,18 @@ services:
       - db
       - mongo
 
+  nginx:
+    image: nginx:latest
+    container_name: owow_nginx
+    ports: 
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./certs:/etc/nginx/certs
+    depends_on:
+      - web
+
 volumes:
   owow-postgres-data:
   owow-mongo-data:
