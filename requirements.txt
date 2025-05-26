@@ -7,3 +7,4 @@ psutil
 psycopg2-binary>=2.9.9
 gunicorn
 pymongo
+Flask-WTF==0.15.1

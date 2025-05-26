@@ -53,6 +53,17 @@ services:
       - db
       - mongo
 
+  nginx:
+    image: 'docker.io/jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
 volumes:
   owow-postgres-data:
   owow-mongo-data:
