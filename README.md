@@ -1,2 +1,59 @@
-# owow
+# OWOW
+### A helpful way to meal plan and save recipes
 
+
+## Copy this docker-compose into Portainer Stack
+```
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: owow_postgres_db
+    environment:
+      POSTGRES_DB: owow_postgres_db
+      POSTGRES_USER: owow-admin
+      POSTGRES_PASSWORD: owow1
+    volumes:
+      - owow-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U owow-admin -d owow_postgres_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo:
+    image: mongo:latest
+    container_name: owow_mongo_db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    volumes:
+      - owow-mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    image: ghcr.io/ewsmyth/owow:latest
+    ports:
+      - "6876:6876"
+    environment:
+      SECRET_KEY: aabbccddeeffgghhiijjkkll
+      ADMIN_PASSWORD: password
+      MONGO_URL: mongodb://root:password@mongo:27017
+      MONGO_DB: owow_mongo_db
+    depends_on:
+      - db
+      - mongo
+
+volumes:
+  owow-postgres-data:
+  owow-mongo-data:
+```

@@ -29,11 +29,3 @@ class Role(db.Model):
 
     # Relationship with the User table
     users = db.relationship('User', back_populates='role')
-
-class SystemMetric(db.Model):
-    __tablename__ = 'metrics'
-    id = db.Column(db.Integer, primary_key=True)
-    system_name = db.Column(db.String(100), nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-    cpu = db.Column(db.Float)
-    memory = db.Column(db.Float)
