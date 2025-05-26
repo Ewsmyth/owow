@@ -1,0 +1,9 @@
+Flask==3.0.1
+Flask-SQLAlchemy
+Flask-Login
+Flask-Bcrypt
+eventlet==0.35.1
+psutil
+psycopg2-binary>=2.9.9
+gunicorn
+pymongo
