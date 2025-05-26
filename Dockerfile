@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 6876
 
 # Command to run server
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:6876", "owow:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:6876", "owow:owow"]
