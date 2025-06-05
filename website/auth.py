@@ -23,6 +23,7 @@ def auth_login():
         if usrDbCheck:
             if not usrDbCheck.is_active:
                 flash('Invalid email or password.', 'error')
+                print('Invalid email or password.')
                 usrDbCheck.failed_login_attempts += 1
                 db.session.commit()
                 return redirect(url_for('auth.auth_login'))
@@ -30,7 +31,8 @@ def auth_login():
             if usrDbCheck.failed_login_attempts >= 3:
                 usrDbCheck.is_active = False
                 db.session.commit()
-                flash('Your account is locked due to failed login attempts.', 'error')
+                flash('Your account is locked due to failed login attempts.')
+                print('Your account is locked due to failed login attempts.')
                 return redirect(url_for('auth.auth_login'))
 
             # Validate the password
@@ -58,9 +60,11 @@ def auth_login():
                 usrDbCheck.failed_login_attempts += 1
                 db.session.commit()
                 flash('Invalid email or password.', 'error')
+                print('Invalid email or password.')
                 return redirect(url_for('auth.auth_login'))
 
         flash('Invalid email or password.', 'error')
+        print('Invalid email or password.')
         return redirect(url_for('auth.auth_login'))
 
     return render_template('auth-login.html', form=form)

@@ -4,33 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Owow | Sign Up</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth-register.css') }}">
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
 </head>
 <body>
-  <h1>Sign Up</h1>
-  <div>
-    <form action="{{ url_for('auth.auth_register') }}" method="post">
+  <div class="login-container">
+    <h1 class="title">Owow</h1>
+    <form class="login-form" action="{{ url_for('auth.auth_register') }}" method="post">
       {{ form.hidden_tag() }}
-      <div>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}<br>
+
+      <div class="input-group{% if form.username.data %} active{% endif %}" data-placeholder="Username">
+        {{ form.username(id='username', class_='') }}
       </div>
-      <div>
-        {{ form.email.label }}<br>
-        {{ form.email(size=32) }}<br>
+
+      <div class="input-group{% if form.email.data %} active{% endif %}" data-placeholder="Email">
+        {{ form.email(id='email', class_='') }}
       </div>
-      <div>
-        {{ form.password.label }}<br>
-        {{ form.password(size=32) }}<br>
+
+      <div class="input-group password-group{% if form.password.data %} active{% endif %}" data-placeholder="Password">
+        {{ form.password(id='password', class_='') }}
+        <span class="toggle-password" id="togglePassword">👁️</span>
       </div>
-      <div>
-        {{ form.confirmPassword.label }}<br>
-        {{ form.confirmPassword(size=32) }}<br>
+
+      <div class="input-group password-group{% if form.confirmPassword.data %} active{% endif %}" data-placeholder="Confirm Password">
+        {{ form.confirmPassword(id='confirmPassword', class_='') }}
+        <span class="toggle-password" onclick="this.previousElementSibling.type = this.previousElementSibling.type === 'password' ? 'text' : 'password'">👁️</span>
       </div>
-      <div>
-        {{ form.submit() }}
-      </div>
+
+      {{ form.submit(class_='submit-button') }}
     </form>
+    <p>Already have an account? <a href="{{ url_for('auth.auth_login') }}">Login</a></p>
   </div>
+
+  <script src="{{ url_for('static', filename='js/auth-register.js') }}"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v3
 
-      - name: Get COmmit Message
+      - name: Get Commit Message
         id: get-Message
         run: echo "COMMIT_MSG=$(git log -1 --pretty=%B | tr '[:upper:]' '[:lower:]' | tr -c 'a-z0-9._-' '-')" >> $GITHUB_ENV
 

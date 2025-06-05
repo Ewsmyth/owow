@@ -9,3 +9,4 @@ gunicorn
 pymongo
 Flask-WTF==1.2.1
 email-validator
+markdown2

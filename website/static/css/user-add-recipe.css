@@ -1,0 +1,266 @@
+:root {
+  --text-input-border-color: #a5a5a5;
+}
+body.dark-mode {
+  --text-input-border-color: #cccbcb;
+}
+.main-content-wrap {
+  justify-content: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: center;
+  margin: 8px 0 0 0;
+  width: 95%;
+  padding: 0 0 50px 0;
+}
+
+
+/* Dish name input styling */
+.dish-name-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 10px 0;
+}
+.input-group {
+  position: relative;
+  width: 90%;
+}
+.dish-name {
+  width: 100%;
+  font-size: 20px;
+  padding: 16px 4px 4px 4px;
+  border: none;
+  border-bottom: 1px solid var(--text-input-border-color);
+  background: transparent;
+  outline: none;
+  font-family: sans-serif;
+}
+.input-group label {
+  position: absolute;
+  top: 16px;
+  left: 4px;
+  font-size: 20px;
+  color: var(--text-input-border-color);
+  pointer-events: none;
+  transition: 0.2s ease all;
+  font-family: sans-serif;
+}
+.dish-name:focus {
+  border-bottom: 2px solid #4e54c8;
+  color: #4e54c8;
+}
+.dish-name:focus + label,
+.dish-name:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 12px;
+  color: #4e54c8;
+  font-family: sans-serif;
+}
+
+
+/* Cook and prep time styling */
+.timing-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.prep-time-wrap {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+#prepTimeInput,
+#cookTimeInput {
+  width: 35%;
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid var(--text-input-border-color);
+  outline: none;
+  font-size: 16px;
+  font-family: sans-serif;
+  padding: 4px 4px;
+}
+#prepTimeInput:focus,
+#cookTimeInput:focus {
+  border-bottom: 2px solid #4e54c8;
+}
+#prepTimeInput:focus::placeholder,
+#cookTimeInput:focus::placeholder {
+  color: #4e54c8;
+}
+.cook-time-wrap {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+.timing-labels {
+  font-family: sans-serif;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 700;
+}
+
+
+/* Cuisine selection styling */
+.cuisine-meal-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  height: 40px;
+  margin: 5px 0 10px 0;
+}
+.cuisine-drop-down-wrapper {
+  display: flex;
+  width: 55%;
+}
+#cuisine,
+#mealSelection {
+  width: 100%;
+  height: 100%;
+}
+.meal-selection-wrapper {
+  display: flex;
+  width: 20%;
+}
+
+
+/* Add ingredient button styling */
+.add-ing-btn-wrap {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+.add-ing-btn {
+  padding: 10px 8px;
+  border-radius: 20px;
+  background-color: #4e54c8;
+  border: none;
+  margin: 4px 8px 4px 0;
+}
+.add-ing-btn p {
+  margin: 0;
+  font-weight: 700;
+  color: #e7e7e7;
+}
+
+
+/* Ingredients list styling */
+.one-ing-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 6px 0;
+}
+.one-ing-input,
+.one-amount-input,
+.one-select-input,
+#cuisine,
+#mealSelection {
+  background-color: transparent;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid var(--text-input-border-color);
+  outline: none;
+}
+.one-ing-input:focus,
+.one-amount-input:focus,
+.one-select-input:focus,
+#cuisine:focus,
+#mealSelection:focus {
+  border-bottom: 2px solid #4e54c8;
+}
+.one-ing-input:focus::placeholder,
+.one-amount-input:focus::placeholder,
+.one-select-input:focus::placeholder,
+#cuisine:focus::placeholder,
+#mealSelection:focus::placeholder {
+  color: #4e54c8;
+}
+.one-ing-input {
+  width: 50%;
+  font-size: 16px;
+  padding: 5px 3px;
+}
+.one-amount-input {
+  width: 10%;
+  font-size: 12px;
+  padding: 5px 3px;
+  text-align: center;
+}
+
+
+/* Textarea styling */
+.textarea-wrap {
+  width: 94%;
+  position: relative;
+  margin: 20px 0 0 0;
+}
+.textarea-wrap textarea {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  resize: none;
+  background-color: transparent;
+  border: 1px solid var(--text-input-border-color);
+  outline: none;
+  padding: 5px;
+  border-radius: 10px;
+}
+.textarea-wrap textarea:focus {
+  border: 2px solid #4e54c8;
+}
+.textarea-wrap textarea:focus::placeholder {
+  color: #4e54c8;
+}
+.instructions {
+  line-height: 1.6;
+}
+.instructions ul {
+  margin-left: 1.5em;
+  list-style-type: disc;
+}
+.instructions h3 {
+  margin-top: 1em;
+}
+
+
+/* Submit button styling */
+.submit-btn-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+.submit-btn {
+  padding: 10px 12px;
+  border-radius: 20px;
+  background-color: #4e54c8;
+  color: #e7e7e7;
+  font-family: sans-serif;
+  font-weight: 700;
+  border: none;
+  margin: 20px 10px 0 0;
+}
+
+/* testing  */
+
+.select-with-other {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 10px 0;
+}
+
+.select-with-other select,
+.select-with-other input {
+  padding: 8px;
+  font-size: 16px;
+  margin-top: 6px;
+}

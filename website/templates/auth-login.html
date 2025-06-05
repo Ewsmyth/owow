@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Owow | Login</title>
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth-login.css') }}" />
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}" />
 </head>
 <body>
-  <h1>Auth Page</h1>
-  <div>
-    <h3>Login</h3>
-    <form action="{{ url_for('auth.auth_login') }}" method="POST">
+  <div class="login-container">
+    <h1 class="title">Owow</h1>
+    <form class="login-form" action="{{ url_for('auth.auth_login') }}" method="POST">
       {{ form.hidden_tag() }}
-      <div>
-        {{ form.username.label }}
-        <br>
-        {{ form.username(size=32) }}
+      
+      <div class="input-group{% if form.username.data %} active{% endif %}" data-placeholder="Username or Email">
+        {{ form.username(id='username', class_='') }}
       </div>
-      <div>
-        {{ form.password.label }}
-        <br>
-        {{ form.password(size=32) }}
+
+      <div class="input-group password-group{% if form.password.data %} active{% endif %}" data-placeholder="Password">
+        {{ form.password(id='password', class_='') }}
+        <span class="toggle-password" id="togglePassword">👁️</span>
       </div>
-      <div>
-        {{ form.remember.label }}
-        <br>
-        {{ form.remember() }}
+
+      <div style="text-align: left; font-size: 0.9rem; color: #555;">
+        {{ form.remember() }} {{ form.remember.label }}
       </div>
-      <div>
-        {{ form.submit() }}
-      </div>
+
+      {{ form.submit(class_='submit-button') }}
     </form>
-    <p>
-      Don't have an account? <a href="{{ url_for('auth.auth_register') }}">Sign Up</a>
-    </p>
+
+    <p>Don't have an account? <a href="{{ url_for('auth.auth_register') }}">Sign Up</a></p>
   </div>
+
+  <script src="{{ url_for('static', filename='js/auth-login.js') }}"></script>
 </body>
 </html>

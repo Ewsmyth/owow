@@ -1,31 +1,117 @@
 :root {
-    --colorOne: red;
+  --main-body-bg-color: #f3f3f3;
+  --navbar-bg-color: #f3f3f3;
+  --navbar-border-color: #cccbcb;
+  --navbar-icon-color: #999999;
 }
 body.dark-mode {
-    --colorOne: blue;
+  --main-body-bg-color: #494949;
+  --navbar-bg-color: #494949;
+  --navbar-border-color: #777777;
+  --navbar-icon-color: #999999;
 }
+
 body {
-    margin: 0;
-    padding: 0;
+  background-color: var(--main-body-bg-color);
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
-.top-navbar {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-}
-.bottom-navbar {
-    position: fixed;
-    z-index: 1000;
-    bottom: 0;
-}
+
+/* Top and bottom navbar global styling */
+
 .top-navbar,
 .bottom-navbar {
-    left: 0;
-    width: 100%;
-    background-color: #b1b1b1;
-    height: 50px;
+  position: fixed;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  background-color: var(--navbar-bg-color);
+  box-shadow: 0 0 5px var(--navbar-border-color);
+  z-index: 9999;
 }
+
+/* Top Navbar styling */
+.top-navbar {
+  top: 0;
+  border-bottom: 1px solid var(--navbar-border-color);
+  justify-content: space-between;
+  align-items: center;
+}
+/* Left side top navbar */
+.top-left-nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.top-left-svg-wrap {
+  height: 38px;
+  width: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 4px;
+  border-radius: 6px;
+}
+#more-vert-svg {
+  fill: var(--navbar-icon-color);
+  height: 28px;
+  width: 28px;
+}
+/* Right side top navbar */
+.top-right-nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.top-right-svg-wrap {
+  height: 44px;
+  width: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 4px 0 0;
+  border-radius: 50%;
+}
+#profile-svg {
+  fill: var(--navbar-icon-color);
+  height: 40px;
+  width: 40px;
+}
+
+
+
+/* Bottom Navbar styling */
+.bottom-navbar {
+  bottom: 0;
+  border-top: 1px solid var(--navbar-border-color);
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.bottom-navbar-btn {
+  height: 50px;
+  width: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main content wrap styling */
 .main-content-wrap {
-    margin: 50px 0 50px 0;
-    border: 1px solid red;
+  margin: 50px 0 50px 0;
+  width: 100%;
+  display: flex;
+}
+.line-div {
+  height: 40px;
+  border-left: 1px solid var(--navbar-border-color);
+}
+
+.bottom-nav-svg-global {
+  height: 40px;
+  width: 40px;
+  fill: var(--navbar-icon-color);
 }

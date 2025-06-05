@@ -1,0 +1,111 @@
+{% extends 'user-base1.html' %}
+
+{% block title %}Owow | Add Recipe{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/user-add-recipe.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+{% endblock %}
+
+{% block js %}
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<form id="recipe-form" method="POST" action="{{ url_for('user.user_create_recipe', username=username) }}">
+  {{ form.hidden_tag() }}
+  <div class="dish-name-div">
+    <div class="input-group">
+      <input class="dish-name" type="text" name="dish_name" id="dish_name" placeholder=" " required>
+      <label for="dish_name">Dish Name</label>
+    </div>
+  </div>
+
+  <div class="timing-wrapper">
+    <div class="prep-time-wrap">
+      <label for="prepTimeInput">
+        <p class="timing-labels">Prep Time:</p>
+      </label>
+      <input type="text" id="prepTimeInput" name="prep_time" placeholder="HH:MM" maxlength="5">
+    </div>
+
+    <div class="cook-time-wrap">
+      <label for="cookTimeInput">
+        <p class="timing-labels">Cook Time:</p>
+      </label>
+      <input type="text" id="cookTimeInput" name="cook_time" placeholder="HH:MM" maxlength="5">
+    </div>
+  </div>
+
+
+
+  <div class="cuisine-meal-wrapper">
+    <div class="cuisine-drop-down-wrapper">
+      <select id="cuisine" name="cuisine">
+        <option value="" disabled selected>Cuisine</option>
+        {% for cuisine in cuisines %}
+          <option value="{{ cuisine|lower }}">{{ cuisine }}</option>
+        {% endfor %}
+        <option value="other">other</option>
+      </select>
+      <input type="text" id="custom-cuisine" name="custom_cuisine"
+            placeholder="Cuisine"
+            style="display: none;" />
+    </div>
+    <div class="meal-selection-wrapper">
+      <select name="meal-selection" id="mealSelection">
+        <option value="" disabled selected>Meal</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+        <option value="snacks">Snacks</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div id="ingredients-container" class="ingredient-list">
+    <!-- Dynamic Ingredients Appear Here -->
+  </div>
+
+  <div class="add-ing-btn-wrap">
+    <button type="button" class="add-ing-btn" onclick="addIngredient()">
+      <p>Add Ingredients</p>
+    </button>
+  </div>
+
+  <div class="textarea-wrap">
+    <textarea id="instructions" name="instructions" placeholder="Instructions" rows="6"></textarea>
+  </div>
+
+  <div class="submit-btn-wrapper">
+    <button class="submit-btn" type="submit">Save Recipe</button>
+  </div>
+</form>
+
+
+<datalist id="ingredient-options">
+  {% for ingredient in ingredients %}
+    <option value="{{ ingredient }}">
+  {% endfor %}
+</datalist>
+
+<script src="{{ url_for('static', filename='js/user-add-recipe.js') }}"></script>
+<script>
+  const easyMDE = new EasyMDE({
+    element: document.getElementById("instructions"),
+    spellChecker: false,
+    toolbar: ["bold", "italic", "heading", "|", "unordered-list", "ordered-list", "|", "preview", "guide"],
+    placeholder: "Write instructions here using Markdown or the toolbar..."
+  });
+  document.getElementById("recipe-form").addEventListener("submit", function (e) {
+    const content = easyMDE.value().trim();
+    if (!content) {
+      alert("Instructions are required.");
+      e.preventDefault();
+      return;
+    }
+    easyMDE.value(content); // still forces sync
+  });
+</script>
+{% endblock %}

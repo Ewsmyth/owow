@@ -2,10 +2,14 @@ from flask import Flask, g
 from . import config
 from flask_login import LoginManager
 from .models import db, User
-from .utils import create_admin_user, create_roles, bcrypt
+from .utils import create_admin_user, create_roles, bcrypt, create_pre_built_cuisine, create_pre_built_ingredients
 from sqlalchemy.exc import OperationalError
 import time
 from pymongo import MongoClient
+from flask_wtf import CSRFProtect
+from markdown2 import markdown
+
+csrf = CSRFProtect()
 
 def create_owow():
     app = Flask(__name__, static_folder='static')
@@ -14,6 +18,7 @@ def create_owow():
 
     db.init_app(app)
     bcrypt.init_app(app)  # Initialize bcrypt
+    csrf.init_app(app)
 
     # Setup MongoDB client
     mongo_client = MongoClient(app.config["MONGO_URI"])
@@ -32,6 +37,8 @@ def create_owow():
         if not hasattr(g, 'mongo_db'):
             g.mongo_db = app.mongo_db
 
+    app.jinja_env.filters['markdown'] = lambda text: markdown(text, safe_mode="escape")
+
     from .auth import auth
     from .user import user
     from .admin import admin
@@ -47,6 +54,8 @@ def create_owow():
                 db.create_all()
                 create_roles()
                 create_admin_user()
+                create_pre_built_cuisine()
+                create_pre_built_ingredients()
                 print("Database initialization complete.")
                 break
             except Exception as e:
